@@ -1,16 +1,14 @@
-def bfs_from_matrix(matrix, start):
+def dfs_from_matrix(matrix, start):
     visited = set()
-    queue = [start]
-    visited.add(start)
+    stack = [start]
     path = []
-    
-    while queue:
-        node = queue.pop(0)
+    while stack:
+        node = stack.pop()
         path.append(node)
-        for neighbor in range(len(matrix[node])):
+        for neighbor in range(len(matrix[node]) - 1, -1, -1):
             if matrix[node][neighbor] == 1 and neighbor not in visited:
                 visited.add(neighbor)
-                queue.append(neighbor)
+                stack.append(neighbor)
 
     return path
 
@@ -23,4 +21,4 @@ for i in range(n):
 
 print(M)
 
-print(bfs_from_matrix(M, 0))
+print(dfs_from_matrix(M, 0))
